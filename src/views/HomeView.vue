@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <CompositionApi />
+    <RootComponent />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CompositionApi from '@/views/CompositionApi.vue'
+import RootComponent from '@/components/CompositionApi/DependencyInjection/RootComponent.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    CompositionApi
+    RootComponent
   }
 }
 </script>

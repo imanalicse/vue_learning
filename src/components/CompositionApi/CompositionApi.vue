@@ -1,7 +1,7 @@
 <template>
   <div class="CompositionApi">
     <h3>Composition API</h3>
-    <p ref="p"> My Name is {{name}}</p>
+    <p ref="paragraph"> My Name is {{name}}</p>
     <input typeof="text" v-model="name" placeholder="Type Name"> <br>
     <button @click="updateValue">Update value</button>
     <h4>Reactive</h4>
@@ -11,6 +11,12 @@
     <p>Search term - {{ search }}</p>
     <div v-for="name in matchingNames" :key="name">{{ name }}</div>
     <button @click="stopWatchEvent">Stop watching</button>
+<!--    <PostsList :posts="posts" />-->
+    <h2>Posts</h2>
+    <div v-if="error"> {{ error }} </div>
+    <div v-for="post in posts" :key="post.id">
+      <h3>{{post.title}} </h3>
+    </div>
   </div>
 </template>
 
@@ -22,11 +28,13 @@
 *
  */
 import {computed, reactive, ref, watch, watchEffect} from "vue";
+import getPosts from "@/composable/getPosts";
+// import PostsList from "@/components/CompositionApi/PostsList.vue";
 
 export default {
   name: 'CompositionApi',
   components: {
-
+   // PostsList
   },
   mounted() {
     console.log("mounted")
@@ -35,12 +43,12 @@ export default {
   setup() {
     console.log("setup")
     let name = ref("Iman")
-    const parapraph = ref(null);
+    const paragraph = ref(null);
     const person = reactive({ name: "Iman", age: 35 });
     const updateValue = () => {
       name.value = "Ishak"
-      parapraph.value.classList.add("test");
-      console.log(parapraph.value)
+      paragraph.value.classList.add("test");
+      console.log(paragraph.value)
       person.name = "Mukta"
     }
     const search = ref("")
@@ -62,7 +70,9 @@ export default {
       stopWatchEffect()
     }
 
-    return { name, updateValue, parapraph, person, search, names, matchingNames, stopWatchEvent }
+   const { posts, error, load} = getPosts();
+   load();
+    return { name, updateValue, paragraph, person, search, names, matchingNames, stopWatchEvent, posts, error }
   },
   data() {
     return {
