@@ -5,9 +5,11 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
-const message = inject('message')
-console.log('username:', message.value)
+import {inject, watch} from 'vue'
+const message = inject('message', 'Default Message')
+watch(message, function () {
+  console.log(message.value)
+})
 </script>
 
 <style scoped>

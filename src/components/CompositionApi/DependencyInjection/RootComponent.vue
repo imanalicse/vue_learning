@@ -8,7 +8,7 @@
 <script setup>
 import { provide, ref} from 'vue'
 import Child from '@/components/CompositionApi/DependencyInjection/ChildComp.vue'
-const message = ref('hello');
+const message = ref('Hello');
 provide('message', message)
 </script>
 
