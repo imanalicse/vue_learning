@@ -11,24 +11,17 @@
     <p>Search term - {{ search }}</p>
     <div v-for="name in matchingNames" :key="name">{{ name }}</div>
     <button @click="stopWatchEvent">Stop watching</button>
-<!--    <PostsList :posts="posts" />-->
-    <h2>Posts</h2>
-    <div v-if="error"> {{ error }} </div>
-    <div v-for="post in posts" :key="post.id">
-      <h3>{{post.title}} </h3>
-    </div>
   </div>
 </template>
 
 <script>
 /**
-* reactive:
-*  does not work with primitive data type
-*  Value can be assigned directly without .value operator
-*
+ * reactive:
+ *  does not work with primitive data type
+ *  Value can be assigned directly without .value operator
+ *
  */
 import {computed, reactive, ref, watch, watchEffect} from "vue";
-import getPosts from "@/composable/getPosts";
 // import PostsList from "@/components/CompositionApi/PostsList.vue";
 
 export default {
@@ -69,10 +62,7 @@ export default {
       stopWatch()
       stopWatchEffect()
     }
-
-   const { posts, error, load} = getPosts();
-   load();
-    return { name, updateValue, paragraph, person, search, names, matchingNames, stopWatchEvent, posts, error }
+    return { name, updateValue, paragraph, person, search, names, matchingNames, stopWatchEvent}
   },
   data() {
     return {

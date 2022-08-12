@@ -5,7 +5,7 @@ const getPosts = () => {
     const error = ref(null);
     const load = async () => {
         try {
-            let data = await fetch('http://localhost:3000/posts')
+            let data = await fetch('https://jsonplaceholder.typicode.com/posts')
             if (!data.ok) {
                 throw Error("No data available")
             }
@@ -15,8 +15,8 @@ const getPosts = () => {
             console.log(e.message);
         }
     }
-    // load();
-    return { posts, error, load }
+    load();
+    return { posts, error }
 }
 
 export default getPosts;
